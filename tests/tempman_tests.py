@@ -1,5 +1,6 @@
 import os
 import time
+from datetime import timedelta
 
 from nose.tools import istest, assert_equal
 
@@ -46,6 +47,25 @@ def using_root_to_create_temporary_directories_creates_directories_under_root_pa
 def directories_older_than_timeout_are_deleted_when_cleaning_up():
     with tempman.create_temp_dir() as parent_directory:
         root = tempman.root(parent_directory.path, timeout=60)
+        now = time.time()
+        
+        old_dir = os.path.join(parent_directory.path, "one")
+        os.mkdir(old_dir)
+        os.utime(old_dir, (now - 70, now - 70))
+        
+        newer_dir = os.path.join(parent_directory.path, "two")
+        os.mkdir(newer_dir)
+        os.utime(newer_dir, (now - 10, now - 10))
+        
+        root.cleanup()
+        
+        assert_equal(["two"], os.listdir(parent_directory.path))
+
+
+@istest
+def timeout_can_be_specified_using_timedelta():
+    with tempman.create_temp_dir() as parent_directory:
+        root = tempman.root(parent_directory.path, timeout=timedelta(minutes=1))
         now = time.time()
         
         old_dir = os.path.join(parent_directory.path, "one")
