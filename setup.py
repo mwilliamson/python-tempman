@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name='tempman',
-    version='0.1.0',
+    version='0.1.1',
     description='Create and clean up temporary directories',
     long_description=read("README"),
     author='Michael Williamson',
