@@ -19,3 +19,15 @@ class TemporaryDirectory(object):
         
     def __exit__(self, *args):
         self.close()
+
+
+def root(dir):
+    return Root(path=dir)
+    
+    
+class Root(object):
+    def __init__(self, path):
+        self._path = path
+        
+    def create_temp_dir(self):
+        return create_temp_dir(dir=self._path)
