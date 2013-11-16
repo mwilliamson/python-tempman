@@ -2,10 +2,13 @@
 
 ## API
 
-### `tempdir.create_temp_dir()`
+### `tempdir.create_temp_dir(dir=None)`
 
 Creates a temporary directory and returns an instance of `TemporaryDirectory`.
 The directory will be deleted when the instance of `TemporaryDirectory` is closed.
+
+If `dir` is set,
+the temporary directory is created as a sub-directory of `dir`.
 
 ### `TemporaryDirectory`
 
