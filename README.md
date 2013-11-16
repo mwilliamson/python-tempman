@@ -32,11 +32,18 @@ Has the following attributes:
 `TemporaryDirectory` is a context manager,
 so using `with` will also delete the temporary directory.
 
-### `tempdir.root(dir)`
+### `tempdir.root(dir, timeout=None)`
 
 Creates a factory for temporary directories,
 all of which will be under the directory `dir`.
 Returns `Root`.
+
+If `timeout` is set,
+any sub-directories with an age greater than `timeout` seconds will be deleted on cleanup.
+Cleanup occurs during `root.create_temp_dir()`,
+and can also be triggered manually by calling `root.cleanup()`.
+The age of a sub-directory is determined by the modification or access time,
+whichever is later.
 
 ### `Root`
 
@@ -44,6 +51,9 @@ Has the following attributes:
 
 * `create_temp_dir()`: creates a temporary directory in the same way as `tempman.create_temp_dir()`,
   except that the parent directory is always the directory of the `Root`.
+  Also calls `cleanup()`.
+  
+* `cleanup()`: if `timeout` is set, delete old sub-directories as described above.
 
 ## Installation
 
