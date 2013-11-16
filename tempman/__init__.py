@@ -33,8 +33,14 @@ class Root(object):
         if timeout is None or isinstance(timeout, int):
             self._timeout = timeout
         else:
-            self._timeout = timeout.total_seconds()
-        
+            self._timeout = self._total_seconds(timeout)
+    
+    def _total_seconds(self, value):
+        if hasattr(value, "total_seconds"):
+            return value.total_seconds()
+        else:
+            return (value.microseconds + (value.seconds + value.days * 24 * 3600) * 10**6) / 10**6
+    
     def create_temp_dir(self):
         self.cleanup()
         
