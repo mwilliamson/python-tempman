@@ -1,5 +1,12 @@
 # Tempman: Create and clean up temporary directories
 
+Tempman can be used to create temporary directories.
+These temporary directories can then be easily cleaned up by calling `close`,
+or using the directory as a context manager.
+
+By using a fixed root for temporary directory,
+Tempman also allows cleanup of directories older than a specified timeout.
+
 ## Example
 
 ```python
