@@ -32,6 +32,19 @@ Has the following attributes:
 `TemporaryDirectory` is a context manager,
 so using `with` will also delete the temporary directory.
 
+### `tempdir.root(dir)`
+
+Creates a factory for temporary directories,
+all of which will be under the directory `dir`.
+Returns `Root`.
+
+### `Root`
+
+Has the following attributes:
+
+* `create_temp_dir()`: creates a temporary directory in the same way as `tempman.create_temp_dir()`,
+  except that the parent directory is always the directory of the `Root`.
+
 ## Installation
 
 ```
