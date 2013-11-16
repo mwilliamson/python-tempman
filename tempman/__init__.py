@@ -33,11 +33,11 @@ class Root(object):
         self._timeout = timeout
         
     def create_temp_dir(self):
-        self._cleanup()
+        self.cleanup()
         
         return create_temp_dir(dir=self._path)
 
-    def _cleanup(self):
+    def cleanup(self):
         if self._timeout is not None:
             self._delete_directories_older_than_timeout()
             
