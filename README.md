@@ -1,5 +1,17 @@
 # Tempman: Create and clean up temporary directories
 
+## Example
+
+```python
+import tempman
+
+with tempman.create_temp_dir() as directory:
+    assert os.path.exists(directory.path)
+    assert os.path.isdir(directory.path)
+
+assert not os.path.exists(directory.path)
+```
+
 ## API
 
 ### `tempdir.create_temp_dir(dir=None)`
@@ -19,18 +31,6 @@ Has the following attributes:
 
 `TemporaryDirectory` is a context manager,
 so using `with` will also delete the temporary directory.
-
-## Example
-
-```python
-import tempman
-
-with tempman.create_temp_dir() as directory:
-    assert os.path.exists(directory.path)
-    assert os.path.isdir(directory.path)
-
-assert not os.path.exists(directory.path)
-```
 
 ## Installation
 
