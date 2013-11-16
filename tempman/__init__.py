@@ -2,8 +2,8 @@ import tempfile
 import shutil
 
 
-def create_temp_dir():
-    path = tempfile.mkdtemp()
+def create_temp_dir(dir=None):
+    path = tempfile.mkdtemp(dir=dir)
     return TemporaryDirectory(path)
 
 

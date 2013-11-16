@@ -24,3 +24,10 @@ def temporary_directory_is_deleted_on_close():
     directory = tempman.create_temp_dir()
     directory.close()
     assert not os.path.exists(directory.path)
+
+
+@istest
+def dir_argument_can_be_used_to_set_parent_directory():
+    with tempman.create_temp_dir() as parent_directory:
+        with tempman.create_temp_dir(dir=parent_directory.path) as directory:
+            assert_equal([os.path.basename(directory.path)], os.listdir(parent_directory.path))
