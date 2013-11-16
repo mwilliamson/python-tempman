@@ -51,6 +51,7 @@ Cleanup occurs during `root.create_temp_dir()`,
 and can also be triggered manually by calling `root.cleanup()`.
 The age of a sub-directory is determined by the modification or access time,
 whichever is later.
+`timeout` can either be a number of seconds, or an instance of `datetime.timedelta`.
 
 ### `Root`
 
