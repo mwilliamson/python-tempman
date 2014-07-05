@@ -11,7 +11,7 @@ cleanup of directories older than a specified timeout.
 Example
 -------
 
-::
+.. code-block:: python
 
     import tempman
 
@@ -74,7 +74,7 @@ Has the following attributes:
 Installation
 ------------
 
-::
+.. code-block:: sh
 
     pip install tempman
 
