@@ -10,7 +10,7 @@ setup(
     name='tempman',
     version='0.1.3',
     description='Create and clean up temporary directories',
-    long_description=read("README"),
+    long_description=read("README.rst"),
     author='Michael Williamson',
     author_email='mike@zwobble.org',
     url='http://github.com/mwilliamson/python-tempman',
