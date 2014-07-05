@@ -44,28 +44,18 @@ def using_root_to_create_temporary_directories_creates_directories_under_root_pa
 
 
 @istest
-def directories_older_than_timeout_are_deleted_when_cleaning_up():
-    with tempman.create_temp_dir() as parent_directory:
-        root = tempman.root(parent_directory.path, timeout=60)
-        now = time.time()
-        
-        old_dir = os.path.join(parent_directory.path, "one")
-        os.mkdir(old_dir)
-        os.utime(old_dir, (now - 70, now - 70))
-        
-        newer_dir = os.path.join(parent_directory.path, "two")
-        os.mkdir(newer_dir)
-        os.utime(newer_dir, (now - 10, now - 10))
-        
-        root.cleanup()
-        
-        assert_equal(["two"], os.listdir(parent_directory.path))
+def directories_older_than_integer_timeout_are_deleted_when_cleaning_up():
+    _directories_older_than_timeout_are_deleted_when_cleaning_up(60)
 
 
 @istest
 def timeout_can_be_specified_using_timedelta():
+    _directories_older_than_timeout_are_deleted_when_cleaning_up(timedelta(minutes=1))
+
+
+def _directories_older_than_timeout_are_deleted_when_cleaning_up(one_minute):
     with tempman.create_temp_dir() as parent_directory:
-        root = tempman.root(parent_directory.path, timeout=timedelta(minutes=1))
+        root = tempman.root(parent_directory.path, timeout=one_minute)
         now = time.time()
         
         old_dir = os.path.join(parent_directory.path, "one")
