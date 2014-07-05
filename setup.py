@@ -15,6 +15,6 @@ setup(
     author_email='mike@zwobble.org',
     url='http://github.com/mwilliamson/python-tempman',
     packages=['tempman'],
-    keywords="temporary temp directory directories",
+    keywords="temporary temp directory directories cleanup clean",
 )
 
