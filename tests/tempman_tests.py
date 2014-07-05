@@ -49,6 +49,11 @@ def directories_older_than_integer_timeout_are_deleted_when_cleaning_up():
 
 
 @istest
+def directories_older_than_float_timeout_are_deleted_when_cleaning_up():
+    _directories_older_than_timeout_are_deleted_when_cleaning_up(60.0)
+
+
+@istest
 def timeout_can_be_specified_using_timedelta():
     _directories_older_than_timeout_are_deleted_when_cleaning_up(timedelta(minutes=1))
 

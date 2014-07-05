@@ -2,6 +2,7 @@ import tempfile
 import shutil
 import time
 import os
+from numbers import Number
 
 
 def create_temp_dir(dir=None):
@@ -30,7 +31,7 @@ def root(dir, timeout=None):
 class Root(object):
     def __init__(self, path, timeout):
         self._path = path
-        if timeout is None or isinstance(timeout, int):
+        if timeout is None or isinstance(timeout, Number):
             self._timeout = timeout
         else:
             self._timeout = self._total_seconds(timeout)
